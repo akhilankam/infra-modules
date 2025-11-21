@@ -1,0 +1,33 @@
+variable "cluster_name" {
+  type        = string
+  description = "EKS Cluster name"
+}
+
+variable "region" {
+  type        = string
+}
+
+variable "private_subnets" {
+  type        = list(string)
+  description = "Private subnets for node groups"
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID"
+}
+
+variable "eks_cluster_role_arn" {
+  type        = string
+  description = "IAM Role ARN for EKS Cluster"
+}
+
+variable "eks_node_role_arn" {
+  type        = string
+  description = "IAM Role ARN for Worker Nodes"
+}
+
+variable "tags" {
+  type        = map(string)
+  default     = {}
+}
