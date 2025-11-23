@@ -31,3 +31,7 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+variable "eks_version" {
+  description = "EKS Kubernetes version (must be explicitly set)"
+  type        = string
+}

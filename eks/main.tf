@@ -9,12 +9,15 @@ resource "aws_eks_cluster" "this" {
   name     = var.cluster_name
   role_arn = var.eks_cluster_role_arn
 
+  version = var.eks_version   # Controlled, not default
+
   vpc_config {
     subnet_ids = var.private_subnets
   }
 
   tags = var.tags
 }
+
 
 # -----------------------------------------------------------
 # Enable OIDC Provider (IRSA)
@@ -41,6 +44,8 @@ resource "aws_eks_node_group" "default" {
   node_group_name = "${var.cluster_name}-ng"
   node_role_arn   = var.eks_node_role_arn
   subnet_ids      = var.private_subnets
+
+  version = var.eks_version   # <--- OPTIONAL but recommended
 
   scaling_config {
     desired_size = 1
