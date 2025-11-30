@@ -12,7 +12,6 @@ data "aws_iam_policy_document" "alb_assume_role" {
 statement {
 actions = ["sts:AssumeRoleWithWebIdentity"]
 
-```
 principals {
   type        = "Federated"
   identifiers = [var.cluster_oidc_provider_arn]
@@ -23,7 +22,6 @@ condition {
   variable = "${replace(var.cluster_oidc_provider_arn, "arn:aws:iam::", "")}:sub"
   values   = ["system:serviceaccount:${var.namespace}:${local.service_account_name}"]
 }
-```
 
 }
 }
