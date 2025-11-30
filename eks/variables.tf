@@ -3,10 +3,6 @@ variable "cluster_name" {
   description = "EKS Cluster name"
 }
 
-variable "region" {
-  type        = string
-}
-
 variable "private_subnets" {
   type        = list(string)
   description = "Private subnets for node groups"
