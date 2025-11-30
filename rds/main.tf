@@ -1,5 +1,3 @@
-provider "aws" {}
-
 # random password for master user
 resource "random_password" "rds_master" {
   length           = 24
