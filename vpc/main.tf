@@ -22,7 +22,7 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_security_group" "db" {
-  name        = "${var.name}-db-sg"
+  name        = "pqsql-db-sg"
   description = "Allow DB access within VPC"
   vpc_id      = aws_vpc.main.id
 
@@ -39,6 +39,4 @@ resource "aws_security_group" "db" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-  tags = var.tags
 }
