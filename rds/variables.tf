@@ -34,6 +34,11 @@ variable "username" {
   default     = "admin"
 }
 
+variable "db_name" {
+  type    = string
+  default = "pgdb"
+}
+
 variable "vpc_id" {
   type        = string
   description = "VPC id"

@@ -50,25 +50,24 @@ repository = "[https://aws.github.io/eks-charts](https://aws.github.io/eks-chart
 chart      = "aws-load-balancer-controller"
 namespace  = var.namespace
 
-set {
-name  = "clusterName"
-value = var.cluster_name
-}
-
-set {
-name  = "serviceAccount.create"
-value = "false"
-}
-
-set {
-name  = "serviceAccount.name"
-value = local.service_account_name
-}
-
-set {
-name  = "region"
-value = data.aws_region.current.name
-}
+set = [
+    {
+      name  = "clusterName"
+      value = var.cluster_name
+    },
+    {
+      name  = "serviceAccount.create"
+      value = "false"
+    },
+    {
+      name  = "serviceAccount.name"
+      value = local.service_account_name
+    },
+    {
+      name  = "region"
+      value = data.aws_region.current.name
+    }
+  ]
 }
 
 data "aws_region" "current" {}
