@@ -7,7 +7,7 @@ resource "aws_subnet" "public" {
 
   availability_zone       = each.value
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = each.value
+  cidr_block              = each.key
   map_public_ip_on_launch = true
 }
 
@@ -16,7 +16,7 @@ resource "aws_subnet" "private" {
 
   availability_zone = each.value
   vpc_id            = aws_vpc.main.id
-  cidr_block        = each.value
+  cidr_block        = each.key
 }
 
 resource "aws_security_group" "db" {
