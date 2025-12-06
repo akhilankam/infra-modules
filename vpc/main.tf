@@ -9,6 +9,10 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = each.key
   map_public_ip_on_launch = true
+
+  tags = {
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
+  }
 }
 
 resource "aws_subnet" "private" {
@@ -17,6 +21,10 @@ resource "aws_subnet" "private" {
   availability_zone = each.value
   vpc_id            = aws_vpc.main.id
   cidr_block        = each.key
+  tags = {
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+  }
+
 }
 
 resource "aws_security_group" "db" {

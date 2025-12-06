@@ -31,7 +31,7 @@ variable "allocated_storage" {
 variable "username" {
   type        = string
   description = "DB master username"
-  default     = "admin"
+  default     = "pguser"
 }
 
 variable "db_name" {

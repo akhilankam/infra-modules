@@ -35,7 +35,7 @@ resource "aws_iam_role" "alb_role" {
 
 resource "aws_iam_role_policy_attachment" "alb_role_attach" {
   role       = aws_iam_role.alb_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy"
+  policy_arn = "arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess"
 }
 
 # -------------------------------------------
@@ -57,7 +57,7 @@ resource "helm_release" "alb" {
     },
     {
       name  = "serviceAccount.create"
-      value = "false"
+      value = "true"
     },
     {
       name  = "serviceAccount.name"
