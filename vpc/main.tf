@@ -3,7 +3,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public" {
-  for_each = toset(var.public_subnets)
+  for_each = var.public_subnets
 
   availability_zone       = each.value
   vpc_id                  = aws_vpc.main.id
@@ -12,7 +12,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  for_each = toset(var.private_subnets)
+  for_each = var.private_subnets
 
   availability_zone = each.value
   vpc_id            = aws_vpc.main.id
