@@ -3,9 +3,9 @@ variable "cluster_name" {
   description = "EKS Cluster name"
 }
 
-variable "private_subnets" {
+variable "public_subnets" {
   type        = list(string)
-  description = "Private subnets for node groups"
+  description = "public subnets for node groups"
 }
 
 variable "vpc_id" {
@@ -24,8 +24,8 @@ variable "eks_node_role_arn" {
 }
 
 variable "tags" {
-  type        = map(string)
-  default     = {}
+  type    = map(string)
+  default = {}
 }
 variable "eks_version" {
   description = "EKS Kubernetes version (must be explicitly set)"
