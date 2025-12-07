@@ -12,6 +12,7 @@ resource "aws_subnet" "public" {
 
   tags = {
     "kubernetes.io/cluster/my-eks-cluster" = "shared"
+    "kubernetes.io/role/elb"               = "1"
   }
 }
 
@@ -23,6 +24,7 @@ resource "aws_subnet" "private" {
   cidr_block        = each.key
   tags = {
     "kubernetes.io/cluster/my-eks-cluster" = "owned"
+    "kubernetes.io/role/elb"               = "1"
   }
 
 }
