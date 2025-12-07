@@ -8,7 +8,7 @@ resource "aws_eks_cluster" "this" {
   version = var.eks_version # Controlled, not default
 
   vpc_config {
-    subnet_ids = var.private_subnets
+    subnet_ids = var.public_subnets
   }
 
   tags = var.tags
