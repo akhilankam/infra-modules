@@ -39,7 +39,7 @@ resource "aws_eks_node_group" "default" {
   cluster_name    = aws_eks_cluster.this.name
   node_group_name = "${var.cluster_name}-ng"
   node_role_arn   = var.eks_node_role_arn
-  subnet_ids      = var.private_subnets
+  subnet_ids      = var.public_subnets
 
   version = var.eks_version # <--- OPTIONAL but recommended
 
