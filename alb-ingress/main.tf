@@ -58,7 +58,7 @@ resource "aws_iam_role_policy_attachment" "alb_role_attach" {
 
 # -------------------------------------------
 
-resource "kubernetes_service_account" "alb_sa" {
+resource "kubernetes_service_account_v1" "alb_sa" {
   metadata {
     name      = local.service_account_name
     namespace = var.namespace
@@ -74,9 +74,8 @@ resource "helm_release" "alb" {
   chart      = "aws-load-balancer-controller"
   namespace  = var.namespace
   depends_on = [
-    kubernetes_service_account.alb_sa,
+    kubernetes_service_account_v1.alb_sa,
     aws_iam_role_policy_attachment.alb_role_attach,
-    module.eks
   ]
 
   set = [
