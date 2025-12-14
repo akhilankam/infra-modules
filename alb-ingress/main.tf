@@ -44,7 +44,7 @@ data "http" "alb_policy" {
 resource "aws_iam_policy" "alb_controller_policy" {
   name        = "AWSLoadBalancerControllerIAMPolicy"
   description = "IAM policy for AWS Load Balancer Controller"
-  policy      = data.http.alb_policy.body
+  policy      = data.http.alb_policy.response_body
 }
 
 resource "aws_iam_role_policy_attachment" "alb_role_attach" {
