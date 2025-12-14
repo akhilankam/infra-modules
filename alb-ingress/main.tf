@@ -75,7 +75,8 @@ resource "helm_release" "alb" {
   namespace  = var.namespace
   depends_on = [
     kubernetes_service_account.alb_sa,
-    aws_iam_role_policy_attachment.alb_role_attach
+    aws_iam_role_policy_attachment.alb_role_attach,
+    module.eks
   ]
 
   set = [
