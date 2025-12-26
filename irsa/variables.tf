@@ -25,13 +25,6 @@ variable "permissions" {
     resources = list(string)
   }))
   description = "List of IAM permissions (action and resources) to grant"
-
-  example = [
-    {
-      action    = "secretsmanager:GetSecretValue"
-      resources = ["arn:aws:secretsmanager:ap-south-1:031293725770:secret:my-secret*"]
-    }
-  ]
 }
 
 variable "tags" {
