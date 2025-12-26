@@ -2,7 +2,7 @@
 resource "random_password" "rds_master" {
   length           = 24
   special          = true
-  override_special = "!@#$%^&*()_-+="
+  override_special = "!#$%^&*()_-+="
 }
 
 # DB Subnet Group
