@@ -1,8 +1,11 @@
 data "aws_caller_identity" "current" {}
+data "aws_iam_openid_connect_provider" "this" {
+  arn = var.cluster_oidc_provider_arn
+}
 
-# Extract OIDC provider ID from ARN
+# Extract OIDC provider host from URL
 locals {
-  oidc_provider_id = replace(var.cluster_oidc_provider_arn, "/.*id//", "")
+  oidc_provider_host = replace(data.aws_iam_openid_connect_provider.this.url, "https://", "")
 }
 
 # -----------------------------------------------------------
@@ -28,13 +31,13 @@ data "aws_iam_policy_document" "assume_role" {
 
     condition {
       test     = "StringEquals"
-      variable = "${local.oidc_provider_id}:sub"
+      variable = "${local.oidc_provider_host}:sub"
       values   = ["system:serviceaccount:${var.namespace}:${var.service_account_name}"]
     }
 
     condition {
       test     = "StringEquals"
-      variable = "${local.oidc_provider_id}:aud"
+      variable = "${local.oidc_provider_host}:aud"
       values   = ["sts.amazonaws.com"]
     }
   }
